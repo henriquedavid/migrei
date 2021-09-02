@@ -4,13 +4,21 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
+    ImageBackground,
     SafeAreaView
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import image from '../resources/imgback.jpeg'
 
 export default function Home({navigation, params}){
+
     return(
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Migrei</Text>
+        <View style={styles.container}>
+            <ImageBackground source={image} style={{flex:1, resizeMode: 'cover', justifyContent: 'center'}}>
+            <Text style={styles.title}>MiGRei{"\n"}<Text style={{fontSize: 16, fontWeight: '300'}}>Natal/RN</Text></Text>
+            
+            </ImageBackground>
             <View style={styles.subcontainer}>
             <TouchableOpacity style={[styles.btn, {backgroundColor: '#0e3d6b'}]} onPress={() => navigation.push("Login")}>
                 <Text style={[styles.btn_text, {fontWeight: 'bold', color: '#fff'}]}>Entrar</Text>
@@ -20,25 +28,26 @@ export default function Home({navigation, params}){
                 <Text style={styles.btn_text}>Cadastrar</Text>
             </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        alignItems: 'center',
-        justifyContent: 'space-between'
+        backgroundColor: '#fff'
     },
     subcontainer: {
         flex:1,
         width: '100%',
+        justifyContent: 'flex-end'
     },
     title: {
-        fontSize: 40,
-        marginTop: '20%',
+        textAlign: 'center',
+        fontSize: 60,
+        marginTop: '40%',
+        color:'#fff',
         flex:3,
-        textTransform: 'uppercase',
         fontWeight: 'bold'
     },
     btn: {

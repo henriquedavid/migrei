@@ -31,7 +31,11 @@ export default function CriarVaga({ navigation }) {
                 }>
                 <Picker.Item label="Cozinheiro" value="cozinheiro" />
                 <Picker.Item label="Administrador" value="administrador" />
+                <Picker.Item label="Eletricista" value="eletricista" />
                 <Picker.Item label="Vendedor" value="vendedor" />
+                <Picker.Item label="Encanador" value="encanador" />
+                <Picker.Item label="Garçon" value="garcon" />
+                <Picker.Item label="Pedreiro" value="pedreiro" />
             </Picker>
             </View>
 

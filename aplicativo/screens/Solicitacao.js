@@ -61,7 +61,7 @@ export default function Solicitacao({ navigation, route }) {
             }
 
             await StorageComponent.storeData('solicitacoes', dados);
-            alert("Entregue");
+            alert("Entregue!");
 
             item.entregue = true;
         } catch (err) {

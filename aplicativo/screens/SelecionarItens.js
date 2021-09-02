@@ -20,7 +20,7 @@ export default function SelecionarItens({ navigation, route }) {
     const [itens, setItens] = React.useState([]);
 
     React.useEffect(() => {
-        
+
     }, [itens])
 
 
@@ -36,43 +36,46 @@ export default function SelecionarItens({ navigation, route }) {
             </View>
             <FlatList
                 data={itens}
-                style={{ backgroundColor: '#ccc' }}
+                style={{ backgroundColor: '#eee' }}
                 keyExtractor={(item) => item.id}
                 extraData={itens}
                 renderItem={({ item }) => (
-                    <TouchableOpacity style={styles.item} onPress={() => navigation.push('Solicitacao', { item: item })}>
+                    <View style={styles.item}>
                         <Text style={styles.title}>{item.nome}</Text>
-                    </TouchableOpacity>
+                    </View>
                 )}
                 ListEmptyComponent={() => (
-                    <View style={{flex:1}}>
-                        <Text style={{textAlign: 'center', marginTop: '20%'}}>Digite o que você deseja doar acima!</Text>
+                    <View style={{ flex: 1 }}>
+                        <Text style={{ textAlign: 'center', marginTop: '20%' }}>Digite o que você deseja doar acima!</Text>
                     </View>
                 )}
             />
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.push('LugarReceberSolicitacao', {itens: itens})}>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.push('LugarReceberSolicitacao', { itens: itens })}>
                 <Text style={styles.btn_text}>Continuar</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );
 
     function addItem() {
-        try{
-            let itens = itens;
-            if(itens == null || itens == undefined) itens = [];
+        try {
+            let itens_ = itens;
+            if (itens_ == null || itens_ == undefined){ 
+                console.log("é nulo");
+                itens_ = [];
+            }
             let d = {
-                id : itens.length+1,
+                id: itens_.length + 1,
                 nome: item
             }
-            itens.push(d)
-            setItens(itens) 
+            itens_.push(d)
+            setItens(itens_)
             setItem('');
-            console.log(itens);
-            alert("Adicionado")
+            console.log(itens_);
+            alert("Item adicionado!")
 
 
-            
-        } catch(err){
+
+        } catch (err) {
             console.log(err);
         }
     }
@@ -97,7 +100,7 @@ const styles = StyleSheet.create({
         left: 10
     },
     input_text: {
-        flex:1,
+        flex: 1,
         fontSize: 16
     },
     input_text_btn: {

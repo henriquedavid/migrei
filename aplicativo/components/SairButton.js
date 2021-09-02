@@ -12,6 +12,9 @@ import { CommonActions } from '@react-navigation/native';
 export default function SairButton({ navigation }) {
     return (
         <View style={styles.container}>
+            <View>
+                <Text style={{marginLeft: 20, fontSize: 20, textTransform: 'uppercase', fontWeight: '800'}}>Menu</Text>
+            </View>
             <TouchableOpacity style={styles.btn} onPress={() => logout()} >
                 <MaterialCommunityIcons name="exit-run" size={24} color="black" />
                 <Text style={[styles.btn_text, { fontWeight: 'bold' }]}>Sair</Text>
@@ -38,13 +41,14 @@ export default function SairButton({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'space-between',
-        alignItems: 'flex-end'
+        alignItems: 'center',
+        flexDirection: 'row',
     },
     btn: {
         borderWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        borderColor: '#0e3d6b',
+        borderColor: '#ccc',
         borderRadius: 10,
         padding: 20,
         margin: 20,

@@ -42,7 +42,7 @@ export default function ConsultarSolicitacao({ navigation }) {
             let users = await StorageComponent.getData('dadosusers');
             console.log(users);
 
-            if (!solics) alert("Não existem solicitações");
+            if (!solics) alert("Não existem solicitações para esse CPF");
             else {
 
                 let user_id = 0;

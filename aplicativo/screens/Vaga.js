@@ -10,31 +10,80 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import BackButton from '../components/BackButton';
+import { CommonActions } from '@react-navigation/native';
+import StorageComponent from '../service/storage';
 
 export default function Vaga({ navigation, route }) {
 
 
     const { item } = route.params;
+    const [change, setChange] = React.useState(false);
 
     React.useEffect(() => {
         console.log(item);
-    }, [])
+        verify()
+    }, []);
+
+    async function verify() {
+        try {
+            let e = await StorageComponent.getData('logado');
+            if (e.cpf == item.by.cpf) {
+                setChange(true);
+            }
+        } catch (err) {
+
+        }
+    }
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.subcontainer}>
                     <BackButton
                         navigation={navigation} />
                     <Text style={styles.title}>({item.id}) {item.tipo}</Text>
 
 
-                    <Text style={styles.input_info}>{item.descricao}
-                    </Text>
+                    <Text style={styles.input_info}>{item.descricao}</Text>
+
+                    {change && (
+                        <TouchableOpacity style={styles.btn} onPress={() => excluir()}>
+                            <Text style={styles.btn_text}>Excluir</Text>
+                        </TouchableOpacity>
+                    )}
                 </View>
             </ScrollView>
         </SafeAreaView>
     )
+
+    async function excluir() {
+        try {
+            let vagas = await StorageComponent.getData('vagas');
+            let n = [];
+            for (let e of vagas) {
+                if (e.id != item.id) {
+                    n.push(e);
+                    
+                } else{
+                    console.log("Vai ser excluido");
+                }
+            }
+
+            await StorageComponent.storeData('vagas', n);
+
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 1,
+                    routes: [
+                        { name: 'Menu' }
+                    ]
+                })
+            )
+        } catch (err) {
+
+        }
+
+    }
 }
 
 const styles = StyleSheet.create({
